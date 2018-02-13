@@ -18,7 +18,7 @@ const readWords = () => {
 
 const words = readWords();
 const index = Math.floor(Math.random() * words.length);
-const word = words[index];
+const word = words[index].toLowerCase();
 const guesses = {};
 
 server.get('/', (req, res) => {
@@ -33,7 +33,7 @@ server.get('/', (req, res) => {
 });
 
 server.post('/guess', (req, res) => {
-  const letter = req.body.letter;
+  const letter = req.body.letter.toLowerCase();
   if (!letter) {
     res.status(STATUS_USER_ERROR);
     res.json({ error: 'Must Provide a Letter' });
